@@ -1,0 +1,27 @@
+{
+    "name": "te/message-queuer",
+    "type": "library",
+    "description": "Abstract layer for message queues in PHP.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christian Eikermann",
+            "email": "cei@turtle-entertainment.de"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "aws/aws-sdk-php": "2.5.*"
+    },
+    "suggest": {
+        "aws/aws-sdk-php": "Required for AmazonSQS adapter"
+    },
+    "autoload": {
+        "psr-0": {
+            "MessageQueuer\\": "src/"
+        }
+    }
+}
