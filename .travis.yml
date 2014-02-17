@@ -10,7 +10,7 @@ before_script:
   - php composer.phar install --dev
 
 script:
-  - vendor/bin/phpunit --coverage-text
+  - vendor/bin/phpunit -c phpunit.dist.xml
 
 matrix:
   allow_failures:
