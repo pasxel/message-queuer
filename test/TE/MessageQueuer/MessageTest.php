@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use MessageQueuer\Message;
+use TE\MessageQueuer\Message;
 
 class MessageTest extends\PHPUnit_Framework_TestCase
 {

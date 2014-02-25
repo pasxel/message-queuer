@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace MessageQueuer\Adapter;
+namespace TE\MessageQueuer\Adapter;
 
-use MessageQueuer\ConsumerInterface;
-use MessageQueuer\Message;
-use MessageQueuer\MQAdapterInterface;
+use TE\MessageQueuer\ConsumerInterface;
+use TE\MessageQueuer\Message;
+use TE\MessageQueuer\MQAdapterInterface;
 
 /**
  * Abstract adapter class
