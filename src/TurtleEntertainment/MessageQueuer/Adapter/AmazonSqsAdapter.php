@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace MessageQueuer\Adapter;
+namespace TurtleEntertainment\MessageQueuer\Adapter;
 
 use Aws\Sqs\SqsClient;
-use MessageQueuer\Message;
+use TurtleEntertainment\MessageQueuer\Message;
 
 /**
  * MQ adapter for Amazon SQS
