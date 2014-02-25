@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace TurtleEntertainment\MessageQueuer\Adapter;
+namespace TE\MessageQueuer\Adapter;
 
-use TurtleEntertainment\MessageQueuer\ConsumerInterface;
-use TurtleEntertainment\MessageQueuer\Message;
-use TurtleEntertainment\MessageQueuer\MQAdapterInterface;
+use TE\MessageQueuer\ConsumerInterface;
+use TE\MessageQueuer\Message;
+use TE\MessageQueuer\MQAdapterInterface;
 
 /**
  * Abstract adapter class

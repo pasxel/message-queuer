@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace TurtleEntertainment\MessageQueuer;
+namespace TE\MessageQueuer;
 
 /**
  * Consumer interface

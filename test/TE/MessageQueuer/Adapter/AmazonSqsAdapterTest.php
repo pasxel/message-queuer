@@ -8,8 +8,8 @@
  * file that was distributed with this source code.
  */
 
-use TurtleEntertainment\MessageQueuer\Adapter\AmazonSqsAdapter;
-use TurtleEntertainment\MessageQueuer\Message;
+use TE\MessageQueuer\Adapter\AmazonSqsAdapter;
+use TE\MessageQueuer\Message;
 use Guzzle\Service\Resource\Model;
 
 class AmazonSqsAdapterTest extends \PHPUnit_Framework_TestCase
@@ -126,7 +126,7 @@ class AmazonSqsAdapterTest extends \PHPUnit_Framework_TestCase
                             ->will($this->returnValue(new Model($data)));
 
         // Consumer mock
-        $consumer = $this->getMockBuilder('\TurtleEntertainment\MessageQueuer\ConsumerInterface')
+        $consumer = $this->getMockBuilder('\TE\MessageQueuer\ConsumerInterface')
                          ->getMock();
         $consumer->expects($this->exactly(2))
                  ->method('handleMessage')
@@ -181,7 +181,7 @@ class AmazonSqsAdapterTest extends \PHPUnit_Framework_TestCase
                             ->will($this->returnValue(new Model($data)));
 
         // Consumer mock
-        $consumer = $this->getMockBuilder('\TurtleEntertainment\MessageQueuer\ConsumerInterface')
+        $consumer = $this->getMockBuilder('\TE\MessageQueuer\ConsumerInterface')
                           ->getMock();
         $consumer->expects($this->never())
                  ->method('handleMessage');
