@@ -41,7 +41,7 @@ class AmazonSqsAdapter extends AbstractAdapter
     protected function doReceiveMessages($queueId)
     {
         $response = $this->sqsClient->receiveMessage(array(
-            'QueueUrl' => $queueId,
+            'QueueUrl'            => $queueId,
             'MaxNumberOfMessages' => 10,
         ));
 
@@ -74,16 +74,19 @@ class AmazonSqsAdapter extends AbstractAdapter
         $args = array();
         foreach ($messages as $message) {
             $args[$message->getQueueId()][] = array(
-                'Id' => $id++,
+                'Id'          => $id++,
                 'MessageBody' => $message->getData(),
             );
         }
 
-        foreach ($args as $queueId => $data) {
-            $this->sqsClient->sendMessageBatch(array(
-                'QueueUrl' => $queueId,
-                'Entries' => $data,
-            ));
+        foreach ($args as $queueId => $entities) {
+            $chunkedEntities = array_chunk($entities, 10);
+            foreach ($chunkedEntities as $data) {
+                $this->sqsClient->sendMessageBatch(array(
+                    'QueueUrl' => $queueId,
+                    'Entries'  => $data,
+                ));
+            }
         }
     }
 
@@ -98,17 +101,20 @@ class AmazonSqsAdapter extends AbstractAdapter
         $args = array();
         foreach ($messages as $message) {
             $args[$message->getQueueId()][] = array(
-                'Id' => $id++,
-                'ReceiptHandle' => $message->getParameter('ReceiptHandle'),
+                'Id'                => $id++,
+                'ReceiptHandle'     => $message->getParameter('ReceiptHandle'),
                 'VisibilityTimeout' => 0,
             );
         }
 
-        foreach ($args as $queueId => $data) {
-            $this->sqsClient->changeMessageVisibilityBatch(array(
-                'QueueUrl' => $queueId,
-                'Entries' => $data,
-            ));
+        foreach ($args as $queueId => $entities) {
+            $chunkedEntities = array_chunk($entities, 10);
+            foreach ($chunkedEntities as $data) {
+                $this->sqsClient->changeMessageVisibilityBatch(array(
+                    'QueueUrl' => $queueId,
+                    'Entries'  => $data,
+                ));
+            }
         }
     }
 
@@ -123,16 +129,19 @@ class AmazonSqsAdapter extends AbstractAdapter
         $args = array();
         foreach ($messages as $message) {
             $args[$message->getQueueId()][] = array(
-                'Id' => $id++,
+                'Id'            => $id++,
                 'ReceiptHandle' => $message->getParameter('ReceiptHandle'),
             );
         }
 
-        foreach ($args as $queueId => $data) {
-            $this->sqsClient->deleteMessageBatch(array(
-                'QueueUrl' => $queueId,
-                'Entries' => $data,
-            ));
+        foreach ($args as $queueId => $entities) {
+            $chunkedEntities = array_chunk($entities, 10);
+            foreach ($chunkedEntities as $data) {
+                $this->sqsClient->deleteMessageBatch(array(
+                    'QueueUrl' => $queueId,
+                    'Entries'  => $data,
+                ));
+            }
         }
     }
 
