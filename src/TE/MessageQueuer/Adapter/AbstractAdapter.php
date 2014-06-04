@@ -26,7 +26,7 @@ abstract class AbstractAdapter implements MQAdapterInterface
      *
      * @var array|Message[]
      */
-    protected $messages;
+    protected $messages = array();
 
     /**
      * {@inheritdoc}
@@ -64,12 +64,13 @@ abstract class AbstractAdapter implements MQAdapterInterface
     public function flushMessages()
     {
         $this->doSendMessages($this->messages);
+        $this->messages = array();
     }
 
     /**
      * Internal method to receive messages from queue
      *
-     * @param $queueId
+     * @param mixed $queueId
      *
      * @return array|Message[]
      */
